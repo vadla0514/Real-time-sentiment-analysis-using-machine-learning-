@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('static/Sent2IMG.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+        }
+        h2 {
+            margin: 0;
+            padding-bottom: 20px;
+            color: #333;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 22px;
+            font-weight: bold;
+            position: relative;
+        }
+        .positive {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .negative {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .neutral {
+            background-color: #e2e3e5;
+            color: #383d41;
+        }
+        .emoji {
+            font-size: 48px;
+            display: inline-block;
+            animation: move 1s infinite alternate;
+        }
+        .positive .emoji {
+            color: green;
+        }
+        .negative .emoji {
+            color: red;
+        }
+        .neutral .emoji {
+            color: gray;
+        }
+        @keyframes move {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="result {{ 'positive' if sentiment == 'Positive' else 'negative' if sentiment == 'Negative' else 'neutral' }}">
+            <span class="emoji">
+                {% if sentiment == 'Positive' %}
+                    😀
+                {% elif sentiment == 'Negative' %}
+                    😞
+                {% else %}
+                    😐
+                {% endif %}
+            </span>
+            {{ sentiment }}
+        </div>
+        <a href="/">Go back</a>
+    </div>
+</body>
+</html>
